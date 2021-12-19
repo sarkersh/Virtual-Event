@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+<body>
+<header class="header regular">
+
+    <div class="container">
+        <%- include('./partials/nav.ejs') %>
+    </div>
+
+</header>
+<%- include('./partials/mobile-nav.ejs') %>
+
+<main>
+
+    <section class="event-options pt-1">
+        <div class="container">
+            <h2 class="event-option__heading title text-center">Laugh@Home Events by Year</h2>
+
+            <div class="event-options__body text-center ">
+
+                <div class="registration-box">
+                    <p class="event-options__body text-center text-secondary">Select Year </p>
+                    <form action="/schedule/past-events">
+                        <select name="year" id="past-events-year">
+                            <option value="2022" <% if(selectedYear == '2022') { %> selected <% } %>>2022</option>
+                            <option value="2021" <% if(selectedYear == '2021') { %> selected <% } %>>2021</option>
+                            <option value="2020" <% if(selectedYear == '2020') { %> selected <% } %>>2020</option>
+                        </select>
+                        <input type="submit" value="search" />
+                    </form>
+                </div>
+
+                <h2 class="event-options__body text-center program-schedule-title"><%= selectedYear %> Schedule </h2>
+
+
+            </div>
+
+            <div class="event event--options pt-1 past-events tabs">
+
+                <div class="tab-contents">
+
+                    <p class="event-options__body text-center channel">
+                        Channel 1
+                    </p>
+
+                    <% scheduleData.forEach(function (schedule) { %>
+
+                        <% if(schedule.channel == '1') { %>
+
+                            <% if(schedule.type == 'Break') { %>
+                                <div class="event__card break">
+                                    <h4 class="time">
+                                        <div><span><%= schedule.event_date.toDateString() %> </span></div>
+                                        <%= formatTime(schedule.start_time) %> - <%= formatTime(schedule.end_time) %>
+                                        <span></span>
+                                    </h4>
+                                    <h3 class="event__card-title"><%= schedule.title %></h3>
+                                    <% if(schedule.performer) { %>
+                                        <h4 class="performer-info">
+                                            By <span><%= schedule.performer %></span>
+                                        </h4>
+                                    <% } %>
+                                </div>
+
+                            <% } else { %>
+
+                                <div class="event__card">
+                                    <h4 class="time">
+                                        <div><span><%= schedule.event_date.toDateString() %> </span></div>
+                                        <%= formatTime(schedule.start_time) %> - <%= formatTime(schedule.end_time) %>
+                                        <span></span>
+                                    </h4>
+                                    <h3 class="event__card-title"><%= schedule.title %></h3>
+                                    <em class=""><%= schedule.type %></em>
+                                    <% if(schedule.performer) { %>
+                                        <h4 class="performer-info">
+                                            By <span><%= schedule.performer %></span>
+                                        </h4>
+                                    <% } %>
+                                </div>
+                            <% } %>
+
+                        <% } %>
+
+                    <% }) %>
+
+                </div>
+                <div class="tab-contents">
+
+                    <p class="event-options__body text-center channel">
+                        Channel 2
+                    </p>
+
+                    <% scheduleData.forEach(function (schedule) { %>
+
+                        <% if(schedule.channel == '2') { %>
+
+                            <% if(schedule.type == 'Break') { %>
+                                <div class="event__card break">
+                                    <h4 class="time">
+                                        <div><span><%= schedule.event_date.toDateString() %> </span></div>
+                                        <%= formatTime(schedule.start_time) %> - <%= formatTime(schedule.end_time) %>
+                                        <span></span>
+                                    </h4>
+                                    <h3 class="event__card-title"><%= schedule.title %></h3>
+                                    <% if(schedule.performer) { %>
+                                        <h4 class="performer-info">
+                                            By <span><%= schedule.performer %></span>
+                                        </h4>
+                                    <% } %>
+                                </div>
+
+                            <% } else { %>
+
+                                <div class="event__card">
+                                    <h4 class="time">
+                                        <div><span><%= schedule.event_date.toDateString() %> </span></div>
+                                        <%= formatTime(schedule.start_time) %> - <%= formatTime(schedule.end_time) %>
+                                        <span></span>
+                                    </h4>
+                                    <h3 class="event__card-title"><%= schedule.title %></h3>
+                                    <em class=""><%= schedule.type %></em>
+                                    <% if(schedule.performer) { %>
+                                        <h4 class="performer-info">
+                                            By <span><%= schedule.performer %></span>
+                                        </h4>
+                                    <% } %>
+                                </div>
+                            <% } %>
+
+                        <% } %>
+
+                    <% }) %>
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+</main>
+
+<%- include('./partials/footer.ejs') %>
+
+
+</body>
+
+</html>

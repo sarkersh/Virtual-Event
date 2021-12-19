@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+<body>
+
+<header class="header regular">
+
+    <div class="container">
+        <%- include('./partials/nav.ejs') %>
+    </div>
+
+</header>
+
+<%- include('./partials/mobile-nav.ejs') %>
+
+<main>
+
+    <section class="event-options pt-1">
+
+        <div class="container">
+
+            <h1 class="event-option__heading text-center">Number Guessing Game</h1>
+            <div class="event event--options pt-1">
+
+                <div class="game wrapper">
+
+                    <div class="event__card">
+                        <div class="hidden_number">
+                            <div id="game_play">
+                                <img src="img/question-unsplash.jpg" alt="" width="200">
+                                <h3 id="revealed-number"></h3>
+                            </div>
+                            <input id="your_number" type="text" value="" placeholder="enter your number (1 - 10)" required/>
+                            <p id="play_again" class="play_again">Click the image to reveal the number</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+</main>
+<%- include('./partials/footer.ejs') %>
+
+
+<script src="js/game.js"></script>
+</body>
+
+</html>

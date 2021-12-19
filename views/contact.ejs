@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+<body>
+
+<header class="header regular">
+
+    <div class="container">
+        <%- include('./partials/nav.ejs') %>
+    </div>
+
+</header>
+
+<%- include('./partials/mobile-nav.ejs') %>
+
+<main>
+
+    <section class="event-options pt-1">
+
+        <div class="container">
+
+            <h1 class="event-option__heading text-center">Contact</h1>
+            <p class="event-options__body text-center">How to get in touch</p>
+
+            <div class="event event--options pt-1">
+
+                <div class="contact">
+
+                    <div class="event__card">
+                        <p class="event__card-body">tel: 07846086586</p>
+                        <p class="event__card-body">email: sarkersh@yahoo.com</p>
+                        <p class="event__card-body">register at: www.zoom.com</p>
+                    </div>
+
+                    <div class="event__card">
+                        <div class="registration-box">
+                            <h3 class="title">Contact Form</h3>
+                            <form action="/contact" method="post">
+
+                                <input name="fullname" value="" placeholder="Your fullname" type="text" required>
+                                <input name="email" value="" placeholder="Your email" type="email" required>
+                                <input name="phone" value="" placeholder="Phone number" type="text" required>
+                                <textarea rows="4" name="message" placeholder="Your message" required></textarea>
+
+                                <input value="Submit" class="" type="submit">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="event-options pt-1" id="venue">
+
+        <div class="venue">
+            <div class="venue-inner">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="event__card">
+                            <h2 class="uppercase">streaming channels</h2>
+                            <p class="lead"> - Zoom </p>
+                            <p class="lead"> - Facebook Live </p>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+<%- include('./partials/footer.ejs') %>
+
+
+
+</body>
+
+</html>

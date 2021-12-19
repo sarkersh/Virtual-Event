@@ -1,11 +1,280 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+<body>
+<header class="header">
+
+    <div class="container">
+        <%- include('./partials/nav.ejs') %>
+    </div>
+
+</header>
+<%- include('./partials/mobile-nav.ejs') %>
+<main>
+
+    <section class="hero">
+
+        <div class="hero__image">
+            <img src="img/laughter-1.jpg" alt="Lifting heavy!">
+        </div>
+
+        <div class="container hero__container">
+
+            <div class="hero-wrapper">
+                <h1 class="hero-wrapper__heading">Laugh@Home <span> Online Comedy 2022</span>.</h1>
+                <p class="hero-wrapper__body">
+                    3 days of laughter
+                </p>
+                <a href="#" class="button button--primary" data-content="Find Out More">Find
+                    out
+                    More</a>
+            </div>
+
+
+
+        </div>
+
+    </section>
+
+
+    <section class="event-options pt-1">
+
+        <div class="container">
+
+            <h2 class="event-option__heading title text-center">Live streamed event</h2>
+            <p class="event-options__body text-center"> for your entertainment</p>
+
+            <div class="event event--options pt-1 tabs">
+
+                <div class="why-attend">
+
+                    <article class="event__card padded">
+
+                        <p>Join us online for some light entertainment</p>
+                        <p>from: 30 July, 2022 - 01 August, 2022</p>
+
+                        <h2 class="text-center">This event will be hosted on Zoom</h2>
+                        <h4 class="lead">
+                            register now at zoom.com to reserve your seat
+                        </h4>
+
+                        <p class="event__card-body lead">---------</p>
+                        <p class="event__card-body lead">complete the form below to receive a reminder when the show is about to begin</p>
+                        <p class="event__card-body"></p>
+
+                    </article>
+                    <article class="event__card">
+
+                        <div class="registration-box">
+                            <h3 class="title">Receive Reminder</h3>
+                            <div class="lgx-registration-form">
+                                <form action="/users/register" method="post">
+                                    <input name="fullname" value="" placeholder="Your fullname ..." type="text">
+                                    <input name="email" value="" placeholder="Your email ..." type="email">
+                                    <input name="phone" value="" placeholder="Phone number ..." type="text">
+                                    <input value="Submit" type="submit">
+                                </form>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="categories pt-1">
+
+        <h2 class="event-option__heading title text-center">Comedy Line-up </h2>
+        <p class="event-options__body text-center">Line up includes promising young tallents as well as seasoned pros</p>
+
+        <div class="container event bg-gray performers">
+            <% performers.forEach(function (performer) { %>
+
+                <div class="event__card event__card--square text-secondary">
+                    <h3 class="event__card-title"><%= performer.fullname %> </h3>
+                    <span class="card-subtitle text-secondary"><%= performer.performance %> </span>
+                    <div class="image-overlay"></div>
+                    <div class="event__image">
+                        <img src="<%= performer.image %>" width="500" alt="">
+                    </div>
+                </div>
+
+            <% }) %>
+
+        </div>
+
+    </section>
+    <section class="get-started get-started-img1 mt-1">
+        <div class="overlay"></div>
+        <div class="container">
+            <p>it will be hilarious </p>
+            <h2 class="title text-center">Register Today<br> <span>Why Wait</span></h2>
+            <a href="#" class="button button--primary">Register</a>
+        </div>
+    </section>
+
+    <section class="event-options pt-1">
+        <div class="container">
+            <h2 class="event-option__heading title text-center">Program Schedule</h2>
+            <p class="event-options__body text-center">Three days of fun and laughter</p>
+
+            <div class="event event--options pt-1 tabs">
+
+                <ul class="tab-navs">
+                    <li id="day-one-tab">
+                        <h3>Day <span> one</span></h3>
+                        <p><span>30 </span>July, 2022</p>
+                    </li>
+                    <li id="day-two-tab">
+                        <h3>Day <span> two</span></h3>
+                        <p><span>31 </span>July, 2022</p>
+                    </li>
+                    <li id="day-three-tab">
+                        <h3>Day <span> three</span></h3>
+                        <p><span>01 </span>August, 2022</p>
+                    </li>
+                    <li id="day-three-tab">
+                        <a href="/schedule/past-events">
+                            <h3>Past Events</h3>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-contents">
+
+                    <% scheduleData.forEach(function (schedule) { %>
+                        <% if(schedule.type == 'Break') { %>
+                            <div class="event__card break">
+                                <h4 class="time"><%= formatTime(schedule.start_time) %> - <%= formatTime(schedule.end_time) %></h4>
+                                <h3 class="event__card-title"><%= schedule.title %></h3>
+                                <% if(schedule.performer) { %>
+                                    <h4 class="performer-info">
+                                        By <span><%= schedule.performer %></span>
+                                    </h4>
+                                <% } %>
+                            </div>
+
+                        <% } else { %>
+
+                            <div class="event__card">
+                                <h4 class="time"><%= formatTime(schedule.start_time) %> - <%= formatTime(schedule.end_time) %></h4>
+                                <h3 class="event__card-title"><%= schedule.title %></h3>
+                                <em class=""><%= schedule.type %></em>
+                                <em class="channel">Channel <%= schedule.channel %></em>
+                                <% if(schedule.performer) { %>
+                                    <h4 class="performer-info">
+                                        By <span><%= schedule.performer %></span>
+                                    </h4>
+                                <% } %>
+                            </div>
+                        <% } %>
+
+                    <% }) %>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+    <section class="event-options pt-1">
+
+        <div class="container">
+
+            <h2 class="event-option__heading title text-center">PRICING</h2>
+            <p class="event-options__body text-center">Affordable prices</p>
+
+            <div class="event event--options pt-1 tabs">
+
+                <div class="pricing-table">
+                    <div class="event__card">
+                        <h3 class="event__card-title">£15</h3>
+                        <span>One Day Pass</span>
+                        <ul>
+                            <li>Setup Instruction</li>
+                            <li>Livestream Link</li>
+                            <li>One day access</li>
+                        </ul>
+                    </div>
+                    <div class="event__card">
+                        <h3 class="event__card-title">£20</h3>
+                        <span>Two Day Pass</span>
+                        <ul>
+                            <li>Setup Instruction</li>
+                            <li>Livestream Link</li>
+                            <li>Two day access</li>
+                        </ul>
+                    </div>
+                    <div class="event__card">
+                        <h3 class="event__card-title">£30</h3>
+                        <span>Three Day Pass</span>
+                        <ul>
+                            <li>Setup Instruction</li>
+                            <li>Livestream Link</li>
+                            <li>Three day access</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+    <section class="get-started get-started-img2 mt-1">
+        <div class="overlay"></div>
+
+        <div class="container">
+            <h2 class="text-center title">
+                Stand-up comedy <br>
+                <span>and much more</span>
+            </h2>
+            <a href="#" class="button button--primary">Sign up</a>
+        </div>
+    </section>
+    <section class="event event--options sponsors">
+        <div class="container">
+            <h2 class="event-option__heading text-center">Our sponsors</h2>
+            <p class="event-options__body text-center">This even is sponsored by:</p>
+
+            <div id="sponsors">
+                <div>
+                    <div class="sponsor-wrapper" >
+                        <div class="sponsor">
+                                <img class="img-responsive" src="img/sponsor1.png" alt="">
+                            </div>
+                        <div class="sponsor">
+                            <img class="img-responsive" src="img/sponsor2.png" alt="">
+                        </div>
+                        <div class="sponsor">
+                            <img class="img-responsive" src="img/sponsor3.png" alt="">
+                        </div>
+                        <div class="sponsor">
+                            <img class="img-responsive" src="img/sponsor4.png" alt="">
+                        </div>
+                        <div class="sponsor">
+                            <img class="img-responsive" src="img/sponsor5.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</main>
+
+<%- include('./partials/footer.ejs') %>
+<script src="js/script.js" defer></script>
+
+</body>
+
 </html>

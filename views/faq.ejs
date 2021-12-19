@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+<body>
+
+<header class="header regular">
+
+    <div class="container">
+        <%- include('./partials/nav.ejs') %>
+    </div>
+
+</header>
+
+<%- include('./partials/mobile-nav.ejs') %>
+
+<main>
+
+    <section class="event-options pt-1">
+
+        <div class="container">
+
+            <h1 class="event-option__heading text-center">FAQ</h1>
+            <div class="event event--options pt-1">
+
+                <div class="faq wrapper">
+
+                    <div class="event__card">
+                        <div class="event__card-body">
+                            <details>
+                                <summary>How do I register for the show?</summary>
+                                <p>register at zoom.com. </p>
+                            </details>
+                        </div>
+                        <div class="event__card-body">
+                            <details>
+                                <summary>How do I join the show</summary>
+                                <p>After registering at Zoom.com you will receive an email with Zoom link and detail instructions. </p>
+                            </details>
+                        </div>
+                        <div class="event__card-body">
+                            <details>
+                                <summary>What if my internet connection fails?</summary>
+                                <p>Please make sure you have a good internet connection and a listenibg device before registering.</p>
+                            </details>
+                        </div>
+                        <div class="event__card-body">
+                            <details>
+                                <summary>Where can I buy my ticket</summary>
+                                <p></p>
+                            </details>
+                        </div>
+
+                    </div>
+                    <div class="event__card">
+                        <div class="registration-box">
+                            <img src="img/gabrielle-claro.jpg" alt="">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+<%- include('./partials/footer.ejs') %>
+
+
+
+</body>
+
+</html>
